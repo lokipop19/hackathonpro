@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Forecast Result</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Forecast for {{ place }}</h1>
+  </header>
+  <main>
+    <img src="data:image/png;base64,{{ forecast_plot }}" alt="Forecast Plot">
+    <a href="{{ url_for('index') }}">Back to Home</a>
+  </main>
+  <footer>
+    <p>&copy; 2025 Energy Simulation</p>
+  </footer>
+</body>
+</html>

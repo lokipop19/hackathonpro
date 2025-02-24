@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulation Result</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Town Simulation Result</h1>
+  </header>
+  <main>
+    <h2>Simulation Log</h2>
+    <ul>
+      {% for entry in log %}
+        <li>{{ entry }}</li>
+      {% endfor %}
+    </ul>
+    <h2>Energy Generation vs. Load</h2>
+    <img src="data:image/png;base64,{{ plot_url }}" alt="Simulation Plot">
+    <h2>Gauge Charts</h2>
+    <div class="gauges">
+      <div>{{ gauge_solar|safe }}</div>
+      <div>{{ gauge_wind|safe }}</div>
+      <div>{{ gauge_hydro|safe }}</div>
+      <div>{{ gauge_backup|safe }}</div>
+    </div>
+    <h2>Total Energy Consumption per House</h2>
+    <ul>
+      {% for house, consumption in house_consumption.items() %}
+        <li>{{ house }}: {{ consumption }} Wh</li>
+      {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+  </main>
+  <footer>
+    <p>&copy; 2025 Energy Simulation</p>
+  </footer>
+</body>
+</html>

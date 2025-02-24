@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Historical Simulation (Real-Time)</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Historical Simulation (Real-Time)</h1>
+  </header>
+  <main>
+    <div>
+      <img id="simulation_img" src="" alt="Historical Simulation Graph" style="width:100%; max-width:800px;">
+    </div>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+  </main>
+  <footer>
+    <p>&copy; 2025 Energy Simulation</p>
+  </footer>
+  <script>
+    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+    socket.on('update_image', function(data) {
+      document.getElementById('simulation_img').src = "data:image/png;base64," + data.image;
+    });
+  </script>
+</body>
+</html>

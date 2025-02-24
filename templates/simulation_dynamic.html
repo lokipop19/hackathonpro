@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Real-Time Simulation</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Real-Time Energy Simulation</h1>
+  </header>
+  <main>
+    <button onclick="startSimulation()">Start Simulation</button>
+    <div>
+      <img id="simulation_img" src="" alt="Simulation Graph" style="width:100%; max-width:800px;">
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 Energy Simulation</p>
+  </footer>
+
+  <script>
+    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+
+    // Listen for image updates from the server
+    socket.on('update_image', function(data) {
+      document.getElementById('simulation_img').src = "data:image/png;base64," + data.image;
+    });
+
+    // Start the simulation by calling the server endpoint
+    function startSimulation() {
+      fetch('/start_dynamic_simulation')
+        .then(response => response.text())
+        .then(data => {
+          console.log(data);
+        });
+    }
+  </script>
+</body>
+</html>

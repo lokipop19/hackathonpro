@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Energy Simulation Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Energy Simulation Dashboard</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="{{ url_for('town_simulation') }}">Town Simulation</a></li>
+      <li><a href="{{ url_for('best_forecast') }}">Best Forecast</a></li>
+      <li><a href="{{ url_for('historical_simulation') }}">Historical Simulation</a></li>
+    </ul>
+  </nav>
+  <main>
+    <p>Welcome! Choose a simulation from the navigation menu.</p>
+  </main>
+  <footer>
+    <p>&copy; 2025 Energy Simulation</p>
+  </footer>
+</body>
+</html>
